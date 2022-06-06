@@ -1,18 +1,41 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// 引入login组件
-import login from "@/view/login"
 
 Vue.use(VueRouter)
 
 const routes = [// 路由位置
   {
-    path: '' || '/', //当路径为空时自动跳转到登录页面
-    redirect: "path"
+    path: '/',
+    name: 'layout',
+    component: () => import('@/view/layout'),
+    redirect:'/home',
+
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/view/layout/myView/home.vue')
+      }, {
+        path: '/question',
+        name: 'question',
+        component: () => import('@/view/layout/myView/question.vue')
+      }, {
+        path: '/video',
+        name: 'video',
+        component: () => import('@/view/layout/myView/video.vue')
+      }
+      , {
+        path: '/user',
+        name: 'user',
+        component: () => import('@/view/layout/myView/user.vue')
+
+      }
+    ]
   },
   {
-    path: "/path",
-    component: login
+    path: "/login",
+    name: 'login',
+    component: () => import('@/view/login')
   }
 ]
 

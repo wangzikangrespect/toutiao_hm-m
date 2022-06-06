@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div >
     <!-- 标题栏 -->
     <van-nav-bar title="黑马头条" class="title" />
     <!-- 表单区域 -->
@@ -59,6 +59,7 @@
 <script>
 import { loginApi, sendSmsApi } from "@/api/";
 export default {
+  name: 'loginIndex',
   data() {
     return {
       show: false,
@@ -108,13 +109,13 @@ export default {
         } = await loginApi(user);
         this.$toast.success("登录成功");
         console.log("登录成功", data);
-        this.token=data
+        this.token = data;
       } catch (err) {
         if (err.response.status === 400) {
           return this.$toast.fail(`${err.response.data.message}`);
         }
       }
-      this.$store.commit("storageFn",this.token)
+      this.$store.commit("storageFn", this.token);
     },
     onSendms() {
       //1.效验手机号
@@ -146,30 +147,26 @@ export default {
 </script>
 
 <style lang="less" scope>
-.main {
-  height: 667px;
-  background-color: #f5f7f9;
-}
 .submit_btn {
-  height: 88px;
-  margin: 16px;
+  height: 176px;
+  margin: 32px;
 }
 .van-cell.van-field {
-  height: 46px;
-  font-size: 13px;
-  border-bottom: 1px solid #eeeeee;
+  height: 92px;
+  font-size: 26px;
+  border-bottom: 2px solid #eeeeee;
   .van-field__button {
     position: relative;
 
     .bd {
       position: absolute;
-      right: 102px;
+      right: 204px;
       display: inline-block;
-      height: 30px;
+      height: 60px;
       border-right: 2px solid #eeeeee;
     }
     button {
-      padding: 13px 19px;
+      padding: 26px 38px;
       background-color: #ededed;
       color: #666666;
       border: 0;
@@ -177,13 +174,13 @@ export default {
   }
 
   i {
-    font-size: 20px;
+    font-size: 40px;
   }
 }
 .submit_btn {
   button {
-    margin-top: 27px;
-    height: 44px;
+    margin-top: 54px;
+    height: 88px;
     border-radius: 5px;
     background-color: #6db4fb;
     color: white;
