@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // 引入存储方法
-import { setItem, getItem } from '@/utils/storage'
+import { setItem, getItem, removeItem } from '@/utils/storage'
 
 Vue.use(Vuex)
 
@@ -17,6 +17,9 @@ export default new Vuex.Store({
     storageFn(state, data) {
       state.user = data
       setItem(USER_KEY, data)
+    },
+    removeItemFn() {
+      removeItem(USER_KEY)
     }
   },
   actions: {

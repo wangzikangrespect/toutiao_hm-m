@@ -16,7 +16,7 @@
       </van-tabbar-item>
       <van-tabbar-item replace to="/user">
               <i slot="icon" class="font_family icon-wode"></i>
-        <span>我的</span>
+        <span>{{$store.state.user?'我的':'未登录'}}</span>
 
       </van-tabbar-item>
     </van-tabbar>
@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name:"layoutIndex"
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <!-- 标题栏 -->
     <van-nav-bar title="黑马头条" class="title" />
     <!-- 表单区域 -->
@@ -59,7 +59,7 @@
 <script>
 import { loginApi, sendSmsApi } from "@/api/";
 export default {
-  name: 'loginIndex',
+  name: "loginIndex",
   data() {
     return {
       show: false,
@@ -93,6 +93,7 @@ export default {
     };
   },
   methods: {
+    // 表单提交事件
     async onSubmit() {
       this.$toast.loading({
         message: "加载中...",
@@ -116,6 +117,7 @@ export default {
         }
       }
       this.$store.commit("storageFn", this.token);
+      this.$router.push({ path: "/" });
     },
     onSendms() {
       //1.效验手机号
