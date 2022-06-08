@@ -14,20 +14,20 @@ const routes = [// 路由位置
       {
         path: '/home',
         name: 'home',
-        component: () => import('@/view/layout/myView/home.vue')
+        component: () => import('@/view/layout/home')
       }, {
         path: '/question',
         name: 'question',
-        component: () => import('@/view/layout/myView/question.vue')
+        component: () => import('@/view/layout/question')
       }, {
         path: '/video',
         name: 'video',
-        component: () => import('@/view/layout/myView/video.vue')
+        component: () => import('@/view/layout/video')
       }
       , {
         path: '/user',
         name: 'user',
-        component: () => import('@/view/layout/myView/user.vue')
+        component: () => import('@/view/layout/user')
 
       }
     ]
