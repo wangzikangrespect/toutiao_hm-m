@@ -15,11 +15,12 @@
         error-text="请求失败，点击重新加载"
       >
         <!-- 内容 -->
-        <van-cell
+        <articleItem v-for="(value,index) in list" :key="index" :content="value"></articleItem>
+        <!-- <van-cell
           v-for="(value, index) in list"
           :key="index"
           :title="value.title"
-        />
+        /> -->
         <!-- 内容 -->
       </van-list>
       <!-- 内容列表 -->
@@ -29,7 +30,11 @@
 
 <script>
 import { articlesApi } from "@/api";
+import articleItem from "@/component/articalItem.vue";
 export default {
+  components:{
+    articleItem
+  },
   props: {
     channel: {
       type: Object,

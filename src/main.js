@@ -10,6 +10,8 @@ import 'amfe-flexible'
 import '@/styles/css/css.css'
 // 引入字体图标
 import '@/assets/font/iconfont.css'
+//引入时间处理
+import '@/utils/edittime'
 
 // 注册vant组件
 Vue.use(Vant)
