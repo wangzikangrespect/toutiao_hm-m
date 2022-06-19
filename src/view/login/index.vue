@@ -148,14 +148,14 @@ export default {
 };
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
 .submit_btn {
   height: 176px;
   margin: 32px;
 }
 .van-cell.van-field {
   height: 92px;
-  font-size: 26px;
+  font-size: 52px;
   border-bottom: 2px solid #eeeeee;
   .van-field__button {
     position: relative;

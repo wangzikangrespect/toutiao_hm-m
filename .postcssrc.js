@@ -6,7 +6,8 @@ module.exports = {
         return file.indexOf('vant') !== -1 ? 37.5 : 75
       },
       // 转换的目标，* 表示全部转换
-      propList: ['*']
+      propList: ['*'],
+      exclude:'github-markdown'
     }
   }
 }

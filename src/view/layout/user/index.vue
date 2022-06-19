@@ -16,37 +16,40 @@
       <div class="data-base">
         <!-- 左边信息 -->
         <div class="info">
-          <van-image
-            class="userImg"
-            round
-            :src="userData.photo"
-          />
-          <span>{{userData.name}}</span>
+          <van-image class="userImg" round :src="userData.photo" />
+          <span>{{ userData.name }}</span>
         </div>
         <!-- 右边编辑按钮 -->
         <div class="edit-info">
-          <van-button round type="info">编辑资料</van-button>
+          <van-button
+            round
+            type="info"
+            :to="{
+              name: 'editUserInfo',
+            }"
+            >编辑资料</van-button
+          >
         </div>
       </div>
       <!-- 下部分 -->
       <div class="data-status">
         <div class="box">
           <div>
-            <p>{{userData.art_count}}</p>
+            <p>{{ userData.art_count }}</p>
             <span>头条</span>
           </div>
           <div>
-            <p>{{userData.follow_count}}</p>
+            <p>{{ userData.follow_count }}</p>
             <span>关注</span>
           </div>
         </div>
         <div class="box">
           <div>
-            <p>{{userData.fans_count}}</p>
+            <p>{{ userData.fans_count }}</p>
             <span>粉丝</span>
           </div>
           <div>
-            <p>{{userData.like_count}}</p>
+            <p>{{ userData.like_count }}</p>
             <span>获赞</span>
           </div>
         </div>
@@ -76,12 +79,12 @@
     <van-cell-group class="mes_notifi">
       <!-- 消息通知 -->
       <!-- <van-cell title="消息通知" > -->
-      <van-cell title="消息通知" is-link />
+      <van-cell title="消息通知" is-link center />
       <!-- 小智同学 -->
-      <van-cell title="小智同学" is-link />
+      <van-cell title="小智同学" is-link center />
     </van-cell-group>
     <!-- 退出 -->
-    <van-cell-group v-if="user">
+    <van-cell-group v-if="user" center>
       <van-cell
         title="退出登录"
         center
@@ -152,7 +155,7 @@ export default {
 };
 </script>
 
-<style scope lang='less'>
+<style scoped lang='less'>
 .banner {
   height: 366px;
   background: url("@/assets/img/banner.png");
@@ -195,7 +198,7 @@ export default {
       }
     }
     .edit-info button {
-      width: 160px;
+      width: 165px;
       height: 45px;
       font-size: 20px;
       background-color: #fff;
@@ -238,5 +241,9 @@ export default {
 .out {
   text-align: center;
   color: #d82626;
+}
+.van-cell {
+  height: 109px;
+  padding: 0 20px;
 }
 </style>

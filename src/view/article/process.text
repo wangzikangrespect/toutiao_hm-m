@@ -1,0 +1,30 @@
+需求一、编写路由规则，点击layout中的文章列表，跳转至该文章详情页
+需求二、文章内容被渲染前显示loading界面。文章数据拿到后进行判断
+ 1.成功拿到数据：渲染内容页。
+ 2.若是因网络原因则显示重新加载
+ 3.若返回为404则显示文章无法查看
+需求三、当文章被渲染后，有点击添加关注或取消关注作者的功能。并且在添加时进行检查，若是用户本人则禁止关注并提示
+需求四、文章图片有预览作用
+
+
+ 步骤二、编写aritcles路由规则
+  1.在router中编写路由规则 /articles/:article_id（动态路由）
+  2.给view文件中layout/home页面中的list-content组件添加点击事件，点击跳转至article并动态传值
+
+ 步骤二、在utils中的request文件配置axios的默认配置来正确识别返回的长数字
+  1.安装json-bigint插件，并配置request文件
+  2.配置axios请求文章的getArticlesApi
+  3.将getArticlesApi引入到articles组件中。在created函数中调用数据请求函数getArticlesFn.
+  4.封装getArticlesFn.
+
+步骤三、获得文章数据
+ 1.在api文件下的articles文件中配置文章获取的axios请求，命名为getArticle，并在api导出命名为getArticleApi
+ 2.在view/article文件夹下引入getArticleApi，用getArticleAFn函数编写逻辑。用articleContent变量接收获取数据
+ 3.用previewsImg编写预览加载逻辑。使用vant组件中的预览图片功能。
+ 4.利用articleContent的中的is_collected属性得知文章是否已被关注。若关注则显示取消关注，否则添加关注
+
+步骤四、封装获取和取消关注的axios请求，在onFollows
+ 1.在articles文件夹下配置添加添加关注addFollows和删除关注deleFollowst的请求
+ 2.将封装好的axios引入到articles文件，然后用onFollows编写业务逻辑，并用关注按钮的click事件触发
+ 
+

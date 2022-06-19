@@ -15,7 +15,11 @@
         error-text="请求失败，点击重新加载"
       >
         <!-- 内容 -->
-        <articleItem v-for="(value,index) in list" :key="index" :content="value"></articleItem>
+        <articleItem
+          v-for="(value, index) in list"
+          :key="index"
+          :content="value"
+        ></articleItem>
         <!-- <van-cell
           v-for="(value, index) in list"
           :key="index"
@@ -32,8 +36,9 @@
 import { articlesApi } from "@/api";
 import articleItem from "@/component/articalItem.vue";
 export default {
-  components:{
-    articleItem
+  name: "articleChannlesIndex",
+  components: {
+    articleItem,
   },
   props: {
     channel: {
@@ -61,7 +66,6 @@ export default {
           channel_id: this.channel.id,
           timestamp: this.timestamp || Date.now(),
         });
-        console.log("这是文章列表数据", data);
         // 2.2将获取到的数据合并到list中
         this.list.push(...data.results);
         // 2.3将列表中的数据渲染到页面
@@ -71,10 +75,11 @@ export default {
         // 4.将timestamp的值变为接收到的时间戳
         this.timestamp = data.pre_timestamp;
         // 5.判断，如果接收到的数据不超过10条则将finished变成true
-        if (data.results < 10) {
+        if (data.results.length < 10) {
           this.finished = true;
         }
       } catch (err) {
+        console.log(err);
         this.error = true;
         this.loading = false;
       }

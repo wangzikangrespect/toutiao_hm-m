@@ -8,7 +8,6 @@ body {
   background-color: #f5f7f9;
 }
 .title {
-  padding-top: 16px;
   background-color: #3296fa;
   height: 96px;
   line-height: 96px;
@@ -16,4 +15,8 @@ body {
 .title .van-nav-bar__title {
   font-size: 32px;
   color: white;
+}
+.searchBar {
+  height: 80px;
+  padding: 0 50px !important;
 }

@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style scope lang="less">
+<style scoped lang="less">
 .tabBar{
     height: 103px;
     i{

@@ -9,7 +9,8 @@ const USER_KEY = 'USER_TOKEN'
 
 export default new Vuex.Store({
   state: {
-    user: getItem(USER_KEY)
+    user: getItem(USER_KEY),
+    commentList: []
   },
   getters: {
   },
@@ -20,6 +21,13 @@ export default new Vuex.Store({
     },
     removeItemFn() {
       removeItem(USER_KEY)
+    },
+    asCommentList(state, list) {
+      state.commentList = list
+
+    },
+    addCommentList(state, comment) {
+      state.commentList.unshift(comment)
     }
   },
   actions: {

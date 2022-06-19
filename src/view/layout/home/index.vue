@@ -3,7 +3,7 @@
     <!-- 头部搜索栏 -->
     <van-nav-bar class="navbar" fixed>
       <div slot="title">
-        <van-button round type="primary" class="search_btn">
+        <van-button round type="primary" class="search_btn" to="/search">
           <span slot="icon" class="font_family icon-sousuo"></span>
           <span>搜索</span>
         </van-button>
@@ -13,30 +13,50 @@
     <van-tabs v-model="active" class="Tab" swipeable>
       <van-tab v-for="value in channels" :key="value.id" :title="value.name">
         <!-- list列表 -->
-        <list-content :channel="value"></list-content>
+        <list-content :channel="value"> </list-content>
         <!-- list列表 -->
       </van-tab>
       <!-- 汉堡按钮 -->
       <div slot="nav-right" class="bd_line"></div>
       <div slot="nav-right" class="more">
-        <span class="font_family icon-lishi"></span>
+        <span class="font_family icon-lishi" @click="show = true"></span>
       </div>
       <!-- 汉堡按钮 -->
     </van-tabs>
+    <!-- 弹出框 -->
+    <van-popup
+      v-model="show"
+      closeable
+      position="bottom"
+      :style="{ height: '100%' }"
+      close-icon-position="top-left"
+    >
+      <popupList
+        :myChannels="channels"
+        :emphs="active"
+        @cgActive="activeFn"
+        @cgMychas="cgMychas"
+        @addMychas="addMychas"
+      ></popupList>
+    </van-popup>
   </div>
 </template>
 
 <script>
-import listContent from "@/view/layout/home/compen/content.vue";
+import listContent from "@/view/layout/home/compen/contentList";
 import { followingsApi } from "@/api";
+import popupList from "@/view/layout/home/compen/popuList";
 export default {
+  name: "homeIndex",
   components: {
     listContent,
+    popupList,
   },
   data() {
     return {
       active: 0,
       channels: [],
+      show: false,
     };
   },
   methods: {
@@ -47,11 +67,21 @@ export default {
             data: { channels },
           },
         } = await followingsApi();
-        // console.log(channels);
         this.channels = [...this.channels, ...channels];
       } catch (err) {
         this.$toast("请求用户列表失败");
       }
+    },
+    activeFn(index) {
+      console.log(index);
+      this.active = index;
+      this.show = false;
+    },
+    addMychas(channel) {
+      this.channels.push(channel);
+    },
+    cgMychas(index) {
+      this.channels.splice(index, 1);
     },
   },
   // 在create阶段引入followsApi
@@ -61,17 +91,21 @@ export default {
 };
 </script>
 
-<style scope lang='less'>
+<style scoped lang='less'>
 .main {
-  padding-top: 179px;
-  padding-bottom: 98px;
+  padding-top: 96px;
+  padding-bottom: 103px;
 }
+/deep/ .van-nav-bar__title {
+  max-width: 100% !important;
+  .van-button--primary {
+    border: 0px;
+  }
+}
+
 .navbar {
   height: 96px;
   background-color: #3296fa;
-  .van-nav-bar__title {
-    max-width: unset;
-  }
   .search_btn {
     width: 555px;
     height: 64px;
@@ -84,13 +118,7 @@ export default {
     }
   }
 }
-.Tab {
-  .van-tabs__wrap {
-    position: fixed !important;
-    top: 96px;
-    z-index: 1;
-  }
-
+/deep/.Tab {
   .van-tab {
     min-width: 200px;
     border-right: 1px solid #edeff3;
@@ -105,7 +133,6 @@ export default {
     position: fixed;
     right: 67px;
     margin-top: 12px;
-
     width: 2px;
     height: 58px;
     background-image: url(~@/assets/img/gradient-gray-line.png);
@@ -119,6 +146,7 @@ export default {
     align-items: center;
     height: 82px;
     width: 66px;
+    background-color: white;
     span {
       font-size: 43px;
     }

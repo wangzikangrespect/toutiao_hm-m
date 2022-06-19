@@ -1,0 +1,21 @@
+需求一、点击搜索按钮跳转到搜索页面
+需求二、
+   1. 自动检查当无行为时自动停留在搜索历史组件.。
+   2. 当输入框为focus时则跳转到搜索建议组件.
+   3. 点击搜索或者搜索建议时，进入搜索界面
+
+步骤一、配置路由器   
+  1.将规则写入配置路由
+  2.给home的搜索按钮添加to
+步骤二、给search布局
+  1.首先判断建议是否显示，否则判断结构是否显示，若都不显示则历史显示
+  2.给搜索框focus事件，若focus，则showsuggestion为真，bulr时为false
+  3.给history添加list和cell
+
+步骤三、给searchsuggestion添加事件
+
+步骤四、使searchsuggestion点击后，searchResults进行结果搜索
+ 1.给searchsuggestion添加点击事件，当searchsuggestion被点击，该组件将值赋值给其父组件search中的searchText中。
+ 2.然后search组件再将searchText的值传给子组件searchResults
+ 3.再将searchText通过vant中list组件渲染到页面当中。在该组件的onload函数中书写触发逻辑
+  

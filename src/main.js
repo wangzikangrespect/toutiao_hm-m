@@ -12,6 +12,9 @@ import '@/styles/css/css.css'
 import '@/assets/font/iconfont.css'
 //引入时间处理
 import '@/utils/edittime'
+import 'github-markdown-css'
+
+
 
 // 注册vant组件
 Vue.use(Vant)

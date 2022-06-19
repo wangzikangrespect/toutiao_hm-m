@@ -1,6 +1,14 @@
 <template>
   <div>
-    <van-cell class="articleItem">
+    <van-cell
+      class="articleItem"
+      :to="{
+        name: 'articles',
+        params: {
+          articleId: content.art_id,
+        },
+      }"
+    >
       <!-- 标题内容 -->
       <div slot="title">
         <span>{{ content.title }}</span>
@@ -46,7 +54,7 @@ export default {
 };
 </script>
 
-<style scope lang="less">
+<style scoped lang="less">
 .van-cell {
   padding: unset;
   line-height: unset;
